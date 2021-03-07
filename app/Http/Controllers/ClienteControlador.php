@@ -42,12 +42,37 @@ class ClienteControlador extends Controller
     {
         
         // aula 85 - indica que os campos devem ser obrigatórios
-        $request->validate([
-            'nome'=>'required',
-            'idade'=>'required',
-            'endereco'=>'required',
-            'email'=>'required'
-        ]);
+        $request->validate(
+            // no primeiro array, incluímos os tratamentos dos campos
+            [
+                //'nome'=>'required|min:5|max:10',
+                'nome'=>'required|min:5|max:255|unique:clientes',
+                'idade'=>'required|integer',
+                'endereco'=>'required|min:10',
+                'email'=>'required|email'
+            ],
+            // no segundo array incluimos as customizações das mensagens de erro
+            [
+                // regra genérica
+                'required'=>'O campo :attribute não pode estar em branco',                
+                
+                //validações do campo nome
+                //'nome.required'=>'O campo nome é obrigatório',
+                'nome.min'=>'Informe um nome válido, tamanho mínino de 5 caracteres',
+                'nome.unique'=>'O Nome informado já está cadastrado',
+
+                // validações da idade
+                //'idade.required'=>'O Campo idade é obrigatório',
+                'idade.integer'=>'Verifique se o campo idade está em um formato numérico válido',
+
+                // validação do endereco
+                //'endereco.required'=>'O campo endereço é obrigatório, com tamanho mínimo de 10 caracteres',
+
+                //campo email
+                'email.email'=>'Informe um endereço de e-mail válido',
+                //'email.required'=>'Informe um endereço de e-mail válido'
+            ]
+        );
         
         //
         $cli = new Cliente();
