@@ -25,7 +25,12 @@
                                     id="nome"
                                     name="nome"
                                     placeholder="informe o nome do cliente"
-                                    class="form-control" />
+                                    class="form-control {{$errors->has('nome') ? 'is-invalid' : '' }}" />
+                                @if($errors->has('nome'))
+                                    <div class="invalid-feedback">
+                                        {{$errors->first('nome')}}
+                                    </div>
+                                @endif
                             </div>
 
                             <div class="form-group">
@@ -34,7 +39,12 @@
                                     id="idade"
                                     name="idade"
                                     placeholder="informe a idade do cliente"
-                                    class="form-control" />
+                                    class="form-control {{$errors->has('idade') ? 'is-invalid' : '' }}" />
+                                @if($errors->has('idade'))
+                                    <div class="invalid-feedback">
+                                        {{$errors->first('idade')}}
+                                    </div>
+                                @endif                                    
                             </div>
 
                             <div class="form-group">
@@ -43,7 +53,12 @@
                                     id="endereco"
                                     name="endereco"
                                     placeholder="informe o endereco do cliente"
-                                    class="form-control" />
+                                    class="form-control {{$errors->has('endereco') ? 'is-invalid' : '' }}" />
+                                @if($errors->has('endereco'))
+                                    <div class="invalid-feedback">
+                                        {{$errors->first('endereco')}}
+                                    </div>
+                                @endif                                      
                             </div>
 
                             <div class="form-group">
@@ -52,7 +67,12 @@
                                     id="email"
                                     name="email"
                                     placeholder="informe o email do cliente"
-                                    class="form-control" />
+                                    class="form-control {{$errors->has('email') ? 'is-invalid' : '' }}" />
+                                @if($errors->has('email'))
+                                    <div class="invalid-feedback">
+                                        {{$errors->first('email')}}
+                                    </div>
+                                @endif                                      
                             </div>                                                                                    
 
                             <button type="submit"
@@ -64,6 +84,7 @@
                         </form>
                     </div>
                     <div class="card-footer">
+                    {{--
                     @if($errors->any())
                         @foreach($errors->all() as $err)
                             <div class="alert alert-danger" role="alert">
@@ -71,6 +92,7 @@
                             </div>
                         @endforeach
                     @endif                    
+                    --}}
                     </div>
                 </div>
             </div>
