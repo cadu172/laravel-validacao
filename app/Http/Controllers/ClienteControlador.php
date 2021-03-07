@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cliente;
 
 class ClienteControlador extends Controller
 {
@@ -13,7 +14,11 @@ class ClienteControlador extends Controller
      */
     public function index()
     {
+        
+        $clientes = Cliente::all();
+        
         //
+        return view('clientes',compact('clientes'));
     }
 
     /**
@@ -24,6 +29,7 @@ class ClienteControlador extends Controller
     public function create()
     {
         //
+        return view('create_cliente');
     }
 
     /**
@@ -34,7 +40,26 @@ class ClienteControlador extends Controller
      */
     public function store(Request $request)
     {
+        
+        // aula 85 - indica que os campos devem ser obrigatórios
+        $request->validate([
+            'nome'=>'required',
+            'idade'=>'required',
+            'endereco'=>'required',
+            'email'=>'required'
+        ]);
+        
         //
+        $cli = new Cliente();
+        $cli->nome = $request->input("nome");
+        $cli->idade = $request->input("idade");
+        $cli->endereco = $request->input("endereco");
+        $cli->email = $request->input("email");
+        $cli->save();
+
+        // retorna a view com a listagem de clientes
+        return($this->index());
+
     }
 
     /**

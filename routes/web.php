@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/create_cliente', function () {
-    return view('create_cliente');
-});
+Route::get ('/create_cliente',[App\Http\Controllers\ClienteControlador::class,'create'])->name('cliente.create');
+Route::get ('/cliente',[App\Http\Controllers\ClienteControlador::class,'index'])->name('cliente.show');
+Route::post('/cliente',[App\Http\Controllers\ClienteControlador::class,'store'])->name('cliente.store');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

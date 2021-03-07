@@ -17,8 +17,8 @@
                         <div class="card-title text-white">INCLUSÃO DE CLIENTES</div>
                     </div>                    
                     <div class="card-body">
-                        <form action="/cliente" method="POST" >
-                            @csrf_token
+                        <form action="/cliente" method="POST" >                            
+                            @csrf
                             <div class="form-group">
                                 <label for="nome">NOME</label>
                                 <input type="text"
@@ -60,13 +60,17 @@
                                 id="salvar"
                                 class="btn btn-primary">Salvar</button>
 
-                            <button type="cancel"
-                                name="cancelar"
-                                id="cancelar"
-                                class="btn btn-danger">Cancelar</button>
-
-
+                            <a href="/cliente" class="btn btn-danger">Cancelar</a>
                         </form>
+                    </div>
+                    <div class="card-footer">
+                    @if($errors->any())
+                        @foreach($errors->all() as $err)
+                            <div class="alert alert-danger" role="alert">
+                            {{$err}}
+                            </div>
+                        @endforeach
+                    @endif                    
                     </div>
                 </div>
             </div>
